@@ -68,9 +68,46 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: C:\\Users\\mwhelan\\Playground\\bumblebee\\menu.js Unexpected token (21:48)\nYou may need an appropriate loader to handle this file type.\n| \t\t\t\tvar d;\r\n| \t\t\t\tvar mi;\r\n| \t\t\t\tfor (var i = 0; ln = this.data.length;i < ln; i++) {\r\n| \t\t\t\t\td = this.data[i];\r\n| \t\t\t\t\tmi = menuItem({\r");
+(function(){
+	//'use strict';
+	var menuItem = __webpack_require__(3);
+	var util = __webpack_require__(2);
+
+	var data = [
+		'home','contact us', 'about us', 'other'
+	];
+	console.log('My menu');
+	var menu = {
+		ele: null,
+		data: data,
+		menuItem:[],
+		init: function(){
+			this.initEle();
+			this.initEvent();
+		},
+		initEle: function(){
+			var d;
+			var mi;
+			for (var i = 0, ln = this.data.length;i < ln; i++) {
+				d = this.data[i];
+				mi = menuItem({
+					data:d
+				});
+				this.menuItem.push(mi);
+			}
+		},
+		initEvent: function(){},
+	};
+	menu.init();
+	
+	module.exports = menu;
+
+	
+
+})();
+
 
 /***/ }),
 /* 1 */
@@ -82,6 +119,60 @@ throw new Error("Module parse failed: C:\\Users\\mwhelan\\Playground\\bumblebee\
 	var menu = __webpack_require__(0);
 	console.log('My app');
 })();
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+(function(){
+	'use strict';
+
+	var menuItem = {
+		make: function(type,cls){
+			var ele = document.createElement(type);
+			ele.clasName = cls;
+			return ele;
+		}
+	};
+
+	module.exports = menuItem;
+
+})();
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(){
+	'use strict';
+
+	var util = __webpack_require__(2);
+
+	function menuItem(config){
+	config = config || {};
+
+	var o = {
+		ele: null,
+		data:null,
+		data:config.data,
+		init: function(){
+			this.initEle();
+			this.initEvent();
+		},
+		initEle: function(){
+			this.ele = document.createElement('div','app_menu-item');
+			this.ele.innerHTML = this.data;
+		},
+		initEvent: function(){}
+	};
+	o.init();
+	return o;
+	}
+
+	module.exports = menuItem;
+})();
+
+
 
 /***/ })
 /******/ ]);

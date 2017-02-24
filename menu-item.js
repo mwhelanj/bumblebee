@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	var util = require('./util.js');
+	var util = require('./utils.js');
 
 	function menuItem(config){
 	config = config || {};
